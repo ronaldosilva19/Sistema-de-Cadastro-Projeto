@@ -1,0 +1,141 @@
+
+1 - Cadastrar Produto.
+
+POST http://localhost:8080/produtos
+{
+    "nomeProduto": "Feijao preto",
+    "marca": "Aurora",
+    "dataFabricacao": "2024-01-02",
+    "dataValidade": "2025-01-02",
+    "genero": "ALIMENTICIO",
+    "lote": "2024.199",
+    "ativo": true
+}
+
+2 - Listar produtos
+
+GET http://localhost:8080/produtos
+Nesse caso, o retorno do GET da listagem de produtos, será:
+
+[
+	{
+		"id": 2,
+		"nomeProduto": "Feijao preto",
+		"marca": "Aurora",
+		"dataFabricacao": "2024-01-02",
+		"dataValidade": "2025-01-02",
+		"genero": "ALIMENTICIO",
+		"lote": "2024.199",
+		"ativo": true
+	},
+	{
+		"id": 3,
+		"nomeProduto": "Amaciante",
+		"marca": "Sonho",
+		"dataFabricacao": "2024-10-23",
+		"dataValidade": "2026-02-23",
+		"genero": "LIMPEZA",
+		"lote": "2024.003",
+		"ativo": true
+	},
+	{
+		"id": 4,
+		"nomeProduto": "Malbec",
+		"marca": "Boticário",
+		"dataFabricacao": "2023-09-30",
+		"dataValidade": "2025-05-30",
+		"genero": "COSMETICO",
+		"lote": "2023.015",
+		"ativo": true
+	},
+	{
+		"id": 5,
+		"nomeProduto": "Instance",
+		"marca": "Eudora",
+		"dataFabricacao": "2024-11-15",
+		"dataValidade": "2026-03-25",
+		"genero": "HIGIENE_PESSOAL",
+		"lote": "2024.751",
+		"ativo": true
+	}
+]
+
+3 - Listar produto por ID.
+
+GET http://localhost:8080/produtos/4
+Onde o retorno será, nesse caso:
+
+{
+	"id": 4,
+    "nomeProduto": "Malbec",
+    "marca": "Boticário",
+    "dataFabricacao": "2023-09-30",
+    "dataValidade": "2025-05-30",
+    "genero": "COSMETICO",
+    "lote": "2023.015",
+    "ativo": true
+}
+
+4 - Excluir produto por ID.
+
+DELETE http://localhost:8080/produtos/3
+Não vai retornar no body, mas caso o produto com o ID informado esteja no sistema, o
+retorno será 200 OK, senão será outro valor de retorno.
+
+
+5 - Atualizar produto.
+
+PUT http://localhost:8080/produtos
+{
+	"id": 2,
+	"nomeProduto": "Feijao preto",
+	"marca": "Aurora",
+	"dataFabricacao": "2024-01-02",
+	"dataValidade": "2025-01-02",
+	"genero": "ALIMENTICIO",
+	"lote": "2024.199",
+	"ativo": true
+}
+
+6 - Alterar valor "Ativo" para "False" pelo ID.
+
+PATCH http://localhost:8080/produtos/delete-logic/2
+Quando for executado o comando acima, o valor lógico do ID 2 será alterado para "False".
+Assim, quando for executado novamante a listagem dos produtos, o produto com o id informado
+não aparecerá na lista, embora ainda esteja cadastrado no sistema.
+
+EX:
+GET http://localhost:8080/produtos
+
+[
+	{
+		"id": 3,
+		"nomeProduto": "Amaciante",
+		"marca": "Sonho",
+		"dataFabricacao": "2024-10-23",
+		"dataValidade": "2026-02-23",
+		"genero": "LIMPEZA",
+		"lote": "2024.003",
+		"ativo": true
+	},
+	{
+		"id": 4,
+		"nomeProduto": "Malbec",
+		"marca": "Boticário",
+		"dataFabricacao": "2023-09-30",
+		"dataValidade": "2025-05-30",
+		"genero": "COSMETICO",
+		"lote": "2023.015",
+		"ativo": true
+	},
+	{
+		"id": 5,
+		"nomeProduto": "Instance",
+		"marca": "Eudora",
+		"dataFabricacao": "2024-11-15",
+		"dataValidade": "2026-03-25",
+		"genero": "HIGIENE_PESSOAL",
+		"lote": "2024.751",
+		"ativo": true
+	}
+]

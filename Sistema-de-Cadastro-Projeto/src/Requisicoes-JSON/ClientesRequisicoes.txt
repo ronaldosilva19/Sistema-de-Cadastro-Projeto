@@ -1,0 +1,154 @@
+
+1 - Cadastrar Cliente.
+
+POST http://localhost:8080/clientes
+{
+    "nome": "Miguel",
+    "cpf": "666.666.666-66",
+    "genero": "MASCULINO",
+    "dataNascimento": "2015-09-03",
+    "ativo": true
+}
+
+2 - Listar clientes
+
+GET http://localhost:8080/clientes
+Nesse caso, o retorno do GET da listagem de clientes, será:
+
+[
+	{
+		"id": 2,
+		"nome": "Maria",
+		"cpf": "222.222.222-22",
+		"genero": "FEMININO",
+		"dataNascimento": "1999-02-03",
+		"ativo": true
+	},
+	{
+		"id": 3,
+		"nome": "Barbara",
+		"cpf": "111.111.111-11",
+		"genero": "FEMININO",
+		"dataNascimento": "2000-10-22",
+		"ativo": true
+	},
+	{
+		"id": 4,
+		"nome": "Ronaldo",
+		"cpf": "333.333.333-33",
+		"genero": "MASCULINO",
+		"dataNascimento": "1997-12-01",
+		"ativo": true
+	},
+	{
+		"id": 5,
+		"nome": "Sabrina",
+		"cpf": "444.444.444-44",
+		"genero": "FEMININO",
+		"dataNascimento": "1998-04-28",
+		"ativo": true
+	},
+	{
+		"id": 6,
+		"nome": "Ramon",
+		"cpf": "555.555.555-55",
+		"genero": "MASCULINO",
+		"dataNascimento": "2018-05-31",
+		"ativo": true
+	},
+	{
+		"id": 7,
+		"nome": "Miguel",
+		"cpf": "666.666.666-66",
+		"genero": "MASCULINO",
+		"dataNascimento": "2015-09-03",
+		"ativo": true
+	}
+]
+
+3 - Listar clinte por ID.
+
+GET http://localhost:8080/clientes/5
+Onde o retorno será, nesse caso:
+
+{
+	"id": 5,
+	"nome": "Sabrina",
+	"cpf": "444.444.444-44",
+	"genero": "FEMININO",
+	"dataNascimento": "1998-04-28",
+	"ativo": true
+}
+
+4 - Excluir cliente por ID.
+
+DELETE http://localhost:8080/clientes/3
+Não vai retornar no body, mas caso o cliente com o ID informado esteja no sistema, o
+retorno será 200 OK, senão será outro valor de retorno.
+
+
+5 - Atualizar cliente.
+
+PUT http://localhost:8080/clientes
+{
+    "id": 5,
+    "nome": "Sabrina",
+    "cpf": "444.444.444-44",
+    "genero": "FEMININO",
+    "dataNascimento": "1998-04-28",
+    "ativo": true
+}
+
+6 - Alterar valor "Ativo" para "False" pelo ID.
+
+PATCH http://localhost:8080/clientes/delete-logic/2
+Quando for executado o comando acima, o valor lógico do ID 2 será alterado para "False".
+Assim, quando for executado novamante a listagem dos clientes, o cliente com o id informado
+não aparecerá na lista, embora ainda esteja cadastrado no sistema.
+
+EX:
+GET http://localhost:8080/clientes
+
+[
+	{
+		"id": 3,
+		"nome": "Barbara",
+		"cpf": "111.111.111-11",
+		"genero": "FEMININO",
+		"dataNascimento": "2000-10-22",
+		"ativo": true
+	},
+	{
+		"id": 4,
+		"nome": "Ronaldo",
+		"cpf": "333.333.333-33",
+		"genero": "MASCULINO",
+		"dataNascimento": "1997-12-01",
+		"ativo": true
+	},
+	{
+		"id": 5,
+		"nome": "Sabrina",
+		"cpf": "444.444.444-44",
+		"genero": "FEMININO",
+		"dataNascimento": "1998-04-28",
+		"ativo": true
+	},
+	{
+		"id": 6,
+		"nome": "Ramon",
+		"cpf": "555.555.555-55",
+		"genero": "MASCULINO",
+		"dataNascimento": "2018-05-31",
+		"ativo": true
+	},
+	{
+		"id": 7,
+		"nome": "Miguel",
+		"cpf": "666.666.666-66",
+		"genero": "MASCULINO",
+		"dataNascimento": "2015-09-03",
+		"ativo": true
+	}
+]
+
