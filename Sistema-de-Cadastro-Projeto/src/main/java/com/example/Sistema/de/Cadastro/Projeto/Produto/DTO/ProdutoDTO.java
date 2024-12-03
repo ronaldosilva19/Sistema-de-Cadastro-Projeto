@@ -1,4 +1,6 @@
-package com.example.Sistema.de.Cadastro.Projeto.Produto;
+package com.example.Sistema.de.Cadastro.Projeto.Produto.DTO;
+
+import com.example.Sistema.de.Cadastro.Projeto.Produto.model.GeneroProduto;
 
 import java.time.LocalDate;
 

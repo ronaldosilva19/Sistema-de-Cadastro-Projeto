@@ -1,4 +1,4 @@
-package com.example.Sistema.de.Cadastro.Projeto.Cliente;
+package com.example.Sistema.de.Cadastro.Projeto.Cliente.model;
 
 
 /** Enum com valores para gêneros de sexo.

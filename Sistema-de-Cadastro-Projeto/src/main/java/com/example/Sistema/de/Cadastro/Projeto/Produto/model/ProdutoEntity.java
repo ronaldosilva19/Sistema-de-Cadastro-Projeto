@@ -1,4 +1,4 @@
-package com.example.Sistema.de.Cadastro.Projeto.Produto;
+package com.example.Sistema.de.Cadastro.Projeto.Produto.model;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

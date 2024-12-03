@@ -1,7 +1,10 @@
-package com.example.Sistema.de.Cadastro.Projeto.Pedido;
+package com.example.Sistema.de.Cadastro.Projeto.Pedido.controller;
 
 
-import com.example.Sistema.de.Cadastro.Projeto.Produto.ProdutoEntity;
+import com.example.Sistema.de.Cadastro.Projeto.Pedido.DTO.PedidoDTO;
+import com.example.Sistema.de.Cadastro.Projeto.Pedido.model.PedidoEntity;
+import com.example.Sistema.de.Cadastro.Projeto.Pedido.repository.PedidoRepository;
+import com.example.Sistema.de.Cadastro.Projeto.Produto.model.ProdutoEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

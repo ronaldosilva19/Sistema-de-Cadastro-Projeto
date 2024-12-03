@@ -1,5 +1,6 @@
-package com.example.Sistema.de.Cadastro.Projeto.Produto;
+package com.example.Sistema.de.Cadastro.Projeto.Produto.repository;
 
+import com.example.Sistema.de.Cadastro.Projeto.Produto.model.ProdutoEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 

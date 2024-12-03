@@ -1,4 +1,6 @@
-package com.example.Sistema.de.Cadastro.Projeto.Cliente;
+package com.example.Sistema.de.Cadastro.Projeto.Cliente.DTO;
+
+import com.example.Sistema.de.Cadastro.Projeto.Cliente.model.GeneroCliente;
 
 import java.time.LocalDate;
 

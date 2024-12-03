@@ -1,4 +1,4 @@
-package com.example.Sistema.de.Cadastro.Projeto.Produto;
+package com.example.Sistema.de.Cadastro.Projeto.Produto.model;
 
 
 /** Enum com valores para tipos de produtos diversos..

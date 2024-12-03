@@ -1,4 +1,4 @@
-package com.example.Sistema.de.Cadastro.Projeto.Cliente;
+package com.example.Sistema.de.Cadastro.Projeto.Cliente.model;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

@@ -1,5 +1,6 @@
-package com.example.Sistema.de.Cadastro.Projeto.Cliente;
+package com.example.Sistema.de.Cadastro.Projeto.Cliente.repository;
 
+import com.example.Sistema.de.Cadastro.Projeto.Cliente.model.ClienteEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
