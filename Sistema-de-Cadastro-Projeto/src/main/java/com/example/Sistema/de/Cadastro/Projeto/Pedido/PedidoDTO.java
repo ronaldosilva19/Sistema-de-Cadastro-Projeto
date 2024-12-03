@@ -1,7 +1,7 @@
-package com.example.Sistema.de.Cadastro.Projeto.DTOS.PedidoDTO;
+package com.example.Sistema.de.Cadastro.Projeto.Pedido;
 
-import com.example.Sistema.de.Cadastro.Projeto.ClienteEntity.ClienteEntity;
-import com.example.Sistema.de.Cadastro.Projeto.ProdutoEntity.ProdutoEntity;
+import com.example.Sistema.de.Cadastro.Projeto.Cliente.ClienteEntity;
+import com.example.Sistema.de.Cadastro.Projeto.Produto.ProdutoEntity;
 
 import java.util.List;
 

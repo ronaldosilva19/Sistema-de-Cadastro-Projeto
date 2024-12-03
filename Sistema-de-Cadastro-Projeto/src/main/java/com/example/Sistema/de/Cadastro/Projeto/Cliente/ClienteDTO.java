@@ -1,7 +1,6 @@
-package com.example.Sistema.de.Cadastro.Projeto.DTOS.ClienteDTO;
+package com.example.Sistema.de.Cadastro.Projeto.Cliente;
 
 import java.time.LocalDate;
-import com.example.Sistema.de.Cadastro.Projeto.ClienteEntity.GeneroCliente;
 
 
 /** Cria o Record DTO chamdo ClienteDTO para armazenar os dados

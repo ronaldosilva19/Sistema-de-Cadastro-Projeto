@@ -1,9 +1,5 @@
-package com.example.Sistema.de.Cadastro.Projeto.Controllers.ClienteController;
+package com.example.Sistema.de.Cadastro.Projeto.Cliente;
 
-import com.example.Sistema.de.Cadastro.Projeto.ClienteEntity.ClienteEntity;
-import com.example.Sistema.de.Cadastro.Projeto.DTOS.ClienteDTO.ClienteDTO;
-import com.example.Sistema.de.Cadastro.Projeto.Repositorios.ClienteRepository.ClienteRepository;
-import lombok.extern.java.Log;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

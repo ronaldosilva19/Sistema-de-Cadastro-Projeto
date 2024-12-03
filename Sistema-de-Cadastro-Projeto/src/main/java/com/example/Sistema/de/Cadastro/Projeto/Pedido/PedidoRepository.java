@@ -1,7 +1,5 @@
-package com.example.Sistema.de.Cadastro.Projeto.Repositorios.PedidosRepository;
+package com.example.Sistema.de.Cadastro.Projeto.Pedido;
 
-import com.example.Sistema.de.Cadastro.Projeto.PedidoEntity.PedidoEntity;
-import com.example.Sistema.de.Cadastro.Projeto.PedidoEntity.PedidoEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
