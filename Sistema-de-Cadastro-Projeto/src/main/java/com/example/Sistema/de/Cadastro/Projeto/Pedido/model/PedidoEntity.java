@@ -27,10 +27,22 @@ public class PedidoEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String codigo;
+
+    @ManyToMany
+    @JoinTable(
+            name = "pedido_produtos",
+            joinColumns = @JoinColumn(name = "pedido_id"),
+            inverseJoinColumns = @JoinColumn(name = "produto_id")
+    )
     private List<ProdutoEntity> produtos = new ArrayList<>();
+
+    @ManyToOne
+    @JoinColumn(name = "cliente_id")
     private ClienteEntity cliente;
     private boolean ativo = true; // Para exclusao logica.
 
+
+    // Para remover depois.
     public void setAdicionaProduto(ProdutoEntity produto){
         this.produtos.add(produto);
     }

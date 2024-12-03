@@ -2,7 +2,9 @@ package com.example.Sistema.de.Cadastro.Projeto.Produto.controller;
 
 import com.example.Sistema.de.Cadastro.Projeto.Produto.DTO.ProdutoDTO;
 import com.example.Sistema.de.Cadastro.Projeto.Produto.model.ProdutoEntity;
-import com.example.Sistema.de.Cadastro.Projeto.Produto.repository.ProdutoRepository;
+import com.example.Sistema.de.Cadastro.Projeto.Produto.service.ProdutoService;
+import lombok.RequiredArgsConstructor;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -15,25 +17,17 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/produtos")
+@RequiredArgsConstructor
 public class ProdutoController {
-    private final ProdutoRepository produtoRepository;
-
-
-    /**
-     * Método que cria um produto.
-     * @param produtoRepository ProdutoRepository-
-     */
-    public ProdutoController(ProdutoRepository produtoRepository){
-        this.produtoRepository = produtoRepository;
-    }
+    private final ProdutoService produtoService;
 
     /**
      * Método que lista todos os produtos que estão no sistema e estão
      * com a flag 'ativo' como true.
      */
     @GetMapping
-    public List<ProdutoEntity> getAll(){
-        return produtoRepository.findAll().stream().filter(ProdutoEntity::isAtivo).toList();
+    public List<ProdutoDTO> getAll(){
+        return produtoService.getAll();
     }
 
     /**
@@ -42,46 +36,28 @@ public class ProdutoController {
      * /@return null - caso ID não esteja no sistema ou a flag 'ativo' == false.
      */
     @GetMapping("/{id}")
-    public ProdutoEntity getById(@PathVariable Long id){
-        ProdutoEntity produto = produtoRepository.findById(id).orElse(null);
-       if(produto != null){
-           if(produto.isAtivo()){
-               return produto;
-           }else{
-               return null;
-           }
-       }else{
-           return null;
-       }
+    public ProdutoDTO getById(@PathVariable Long id){
+        return produtoService.getById(id);
     }
 
     /**
      * Método que adiciona um produto na tabela produtos do banco de dados.
-     * @param dto ProdutoDTO - dados dos produtos.
+     * @param produtoDTO  ProdutoDTO - dados dos produtos.
      * @return um produto salvo no sistema.
      */
     @PostMapping
-    public ProdutoEntity postProduto(@RequestBody ProdutoDTO dto){
-        ProdutoEntity produto = ProdutoEntity.builder()
-                .nomeProduto(dto.nomeProduto())
-                .marca(dto.marca())
-                .dataFabricacao(dto.dataFabricacao())
-                .dataValidade(dto.dataValidade())
-                .genero(dto.genero())
-                .lote(dto.lote())
-                .ativo(true)
-                .build();
-        return produtoRepository.save(produto);
+    public ProdutoDTO postProduto(@RequestBody @Validated ProdutoDTO produtoDTO){
+        return produtoService.createProduto(produtoDTO);
     }
 
     /**
      * Método que atualiza os dados de um produto na tabela.
-     * @param produto ProdutoEntity - dado atualizado.
+     * @param produtoDTO ProdutoEntity - dado atualizado.
      * @return um produto atualizado no sistema.
      */
     @PutMapping
-    public ProdutoEntity putProduto(@RequestBody ProdutoEntity produto){
-        return produtoRepository.save(produto);
+    public ProdutoDTO putProduto(@RequestBody @Validated ProdutoDTO produtoDTO){
+        return produtoService.atualizaProduto(produtoDTO);
     }
 
     /**
@@ -90,7 +66,7 @@ public class ProdutoController {
      */
     @DeleteMapping("/{id}")
     public void deleteProduto(@PathVariable Long id){
-        produtoRepository.deleteById(id);
+        produtoService.deletaProduto(id);
     }
 
     /**
@@ -101,11 +77,7 @@ public class ProdutoController {
      */
     @PatchMapping("/delete-logic/{id}")
     public void deleteLogic(@PathVariable Long id){
-        ProdutoEntity produto = produtoRepository.findById(id).orElse(null);
-        if(produto != null){
-            produto.setAtivo(false);
-            produtoRepository.save(produto);
-        }
+        produtoService.deletaLogic(id);
     }
 
 }

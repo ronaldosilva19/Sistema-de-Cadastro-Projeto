@@ -1,6 +1,7 @@
 package com.example.Sistema.de.Cadastro.Projeto.Produto.DTO;
 
 import com.example.Sistema.de.Cadastro.Projeto.Produto.model.GeneroProduto;
+import com.example.Sistema.de.Cadastro.Projeto.Produto.model.ProdutoEntity;
 
 import java.time.LocalDate;
 
@@ -18,10 +19,39 @@ import java.time.LocalDate;
  */
 
 public record ProdutoDTO(
+        Long id,
         String nomeProduto,
         String marca,
         LocalDate dataFabricacao,
         LocalDate dataValidade,
         GeneroProduto genero,
-        String lote
-) {}
+        String lote,
+        boolean ativo
+) {
+    public static ProdutoDTO fromEntity(ProdutoEntity entity){
+        return new ProdutoDTO(
+                entity.getId(),
+                entity.getNomeProduto(),
+                entity.getMarca(),
+                entity.getDataFabricacao(),
+                entity.getDataValidade(),
+                entity.getGenero(),
+                entity.getLote(),
+                entity.isAtivo()
+        );
+    }
+
+    public static ProdutoEntity toEntity(ProdutoDTO dto) {
+
+        return new ProdutoEntity(
+                dto.id(),
+                dto.nomeProduto(),
+                dto.marca(),
+                dto.dataFabricacao(),
+                dto.dataValidade(),
+                dto.genero(),
+                dto.lote(),
+                dto.ativo()
+        );
+    }
+}
