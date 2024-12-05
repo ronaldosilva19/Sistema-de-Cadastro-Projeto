@@ -52,7 +52,7 @@ public class PedidoController {
         return pedidoService.updatePedido(pedidoDTO);
     }
 
-    @DeleteMapping("{/id}")
+    @DeleteMapping("/{id}")
     public void deletePedido(@PathVariable Long id){
        pedidoService.deletePedido(id);
     }
