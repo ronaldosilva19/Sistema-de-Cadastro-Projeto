@@ -3,6 +3,9 @@ package com.example.Sistema.de.Cadastro.Projeto.Cliente.controller;
 import com.example.Sistema.de.Cadastro.Projeto.Cliente.DTO.ClienteDTO;
 import com.example.Sistema.de.Cadastro.Projeto.Cliente.model.ClienteEntity;
 import com.example.Sistema.de.Cadastro.Projeto.Cliente.repository.ClienteRepository;
+import com.example.Sistema.de.Cadastro.Projeto.Cliente.service.ClienteService;
+import lombok.RequiredArgsConstructor;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -15,24 +18,17 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/clientes")
+@RequiredArgsConstructor
 public class ClienteController {
-    private final ClienteRepository clienteRepository;
-
-    /**
-     * Método que cria um cliente.
-     * @param clienteRepository ClienteRepository-
-     */
-    public ClienteController(ClienteRepository clienteRepository) {
-        this.clienteRepository = clienteRepository;
-    }
+    private final ClienteService clienteService;
 
     /**
      * Método que lista todos os clientes que estão no sistema e estão
      * com a flag 'ativo' como true.
      */
     @GetMapping
-    public List<ClienteEntity> getAll() {
-        return clienteRepository.findAll().stream().filter(ClienteEntity::isAtivo).toList();
+    public List<ClienteDTO> getAll() {
+        return clienteService.getAll();
     }
 
     /**
@@ -41,44 +37,28 @@ public class ClienteController {
      * /@return null - caso ID não esteja no sistema ou a flag 'ativo' == false.
      */
     @GetMapping("/{id}")
-    public ClienteEntity getById(@PathVariable Long id) {
-        ClienteEntity cliente = clienteRepository.findById(id).orElse(null);
-        if (cliente != null) {
-            if(cliente.isAtivo()){
-                return cliente;
-            }else{
-                return null;
-            }
-        }else{
-            return null;
-        }
+    public ClienteDTO getById(@PathVariable Long id) {
+        return clienteService.getById(id);
     }
 
     /**
      * Método que adiciona um cliente na tabela clientes do banco de dados.
-     * @param dto ClienteDTO - dados dos clientes.
+     * @param clienteDTO ClienteDTO - dados dos clientes.
      * @return um cliente salvo no sistema.
      */
     @PostMapping
-    public ClienteEntity postCliente(@RequestBody ClienteDTO dto){
-        ClienteEntity cliente = ClienteEntity.builder()
-                .nome(dto.nome())
-                .cpf(dto.cpf())
-                .genero(dto.genero())
-                .dataNascimento(dto.dataNascimento())
-                .ativo(true)
-                .build();
-        return clienteRepository.save(cliente);
+    public ClienteDTO postCliente(@RequestBody @Validated ClienteDTO clienteDTO){
+       return clienteService.createCliente(clienteDTO);
     }
 
     /**
      * Método que atualiza os dados de um cliente na tabela.
-     * @param cliente ClienteEntity - dado atualizado.
+     * @param clienteDTO ClienteEntity - dado atualizado.
      * @return um cliente atualizado no sistema.
      */
     @PutMapping
-    public ClienteEntity putCliente(@RequestBody ClienteEntity cliente){
-        return clienteRepository.save(cliente);
+    public ClienteDTO putCliente(@RequestBody @Validated ClienteDTO clienteDTO){
+        return clienteService.updateCliente(clienteDTO);
     }
 
     /**
@@ -87,7 +67,7 @@ public class ClienteController {
      */
     @DeleteMapping("/{id}")
     public void deleteCliente(@PathVariable Long id){
-        clienteRepository.deleteById(id);
+        clienteService.deletaCliente(id);
     }
 
     /**
@@ -98,10 +78,6 @@ public class ClienteController {
      */
     @PatchMapping("/delete-logic/{id}")
     public void deleteLogic(@PathVariable Long id){
-        ClienteEntity cliente = clienteRepository.findById(id).orElse(null);
-        if(cliente != null){
-            cliente.setAtivo(false);
-            clienteRepository.save(cliente);
-        }
+        clienteService.deletaLogic(id);
     }
 }
