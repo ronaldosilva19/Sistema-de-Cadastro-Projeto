@@ -4,7 +4,10 @@ package com.example.Sistema.de.Cadastro.Projeto.Pedido.controller;
 import com.example.Sistema.de.Cadastro.Projeto.Pedido.DTO.PedidoDTO;
 import com.example.Sistema.de.Cadastro.Projeto.Pedido.model.PedidoEntity;
 import com.example.Sistema.de.Cadastro.Projeto.Pedido.repository.PedidoRepository;
+import com.example.Sistema.de.Cadastro.Projeto.Pedido.service.PedidoService;
 import com.example.Sistema.de.Cadastro.Projeto.Produto.model.ProdutoEntity;
+import lombok.RequiredArgsConstructor;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -16,23 +19,17 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/pedidos")
+@RequiredArgsConstructor
 public class PedidoController {
-    private final PedidoRepository pedidoRepository;
+    private final PedidoService pedidoService;
 
-    /**
-     * Método que cria um pedido.
-     * @param pedidoRepository ProdutoRepository-
-     */
-    public PedidoController(PedidoRepository pedidoRepository){
-        this.pedidoRepository = pedidoRepository;
-    }
 
     /**
      * Método que lista todos os pedidos que estão no sistema.
      */
     @GetMapping
-    public List<PedidoEntity> getAll(){
-        return pedidoRepository.findAll().stream().filter(PedidoEntity::isAtivo).toList();
+    public List<PedidoDTO> getAll(){
+        return pedidoService.getAll();
     }
 
     /**
@@ -41,38 +38,37 @@ public class PedidoController {
      */
 
     @GetMapping("/{id}")
-    public PedidoEntity getById(@PathVariable Long id){
-        return pedidoRepository.findById(id).orElse(null);
+    public PedidoDTO getById(@PathVariable Long id){
+        return pedidoService.getById(id);
     }
 
     @PostMapping
-    public PedidoEntity postPedido(@RequestBody PedidoDTO dto){
-        PedidoEntity pedido = PedidoEntity.builder()
-                .codigo(dto.codigo())
-                .produtos(dto.produtos())
-                .cliente(dto.cliente())
-                .ativo(true)
-                .build();
-        return pedidoRepository.save(pedido);
+    public PedidoDTO postPedido(@RequestBody @Validated PedidoDTO pedidoDTO){
+        return pedidoService.createPedido(pedidoDTO);
     }
 
     @PutMapping
-    public PedidoEntity putPedido(@RequestBody PedidoEntity pedido){
-        return pedidoRepository.save(pedido);
+    public PedidoDTO putPedido(@RequestBody @Validated PedidoDTO pedidoDTO){
+        return pedidoService.updatePedido(pedidoDTO);
     }
 
     @DeleteMapping("{/id}")
-    public void deletaPedido(@PathVariable Long id){
-        pedidoRepository.deleteById(id);
+    public void deletePedido(@PathVariable Long id){
+       pedidoService.deletePedido(id);
     }
 
-    @PatchMapping("/delete-logic/{id}")
+    @PatchMapping("/deleteLogic/{id}")
     public void deleteLogic(@PathVariable Long id){
-        PedidoEntity pedido = pedidoRepository.findById(id).orElse(null);
-        if(pedido != null){
-            pedido.setAtivo(false);
-            pedidoRepository.save(pedido);
-        }
+        pedidoService.deleteLogic(id);
     }
 
+    @PutMapping("/{pedidoId}/adicionarProduto/{produtoId}")
+    public PedidoDTO adicionarProduto(@PathVariable Long pedidoId, @PathVariable Long produtoId){
+        return pedidoService.adicionarPedido(pedidoId, produtoId);
+    }
+
+    @PutMapping("/{pedidoId}/removerProduto/{produtoId}")
+    public PedidoDTO removerProduto(@PathVariable Long peduidoId, @PathVariable Long produtoId){
+        return pedidoService.removerProduto(peduidoId, produtoId);
+    }
 }

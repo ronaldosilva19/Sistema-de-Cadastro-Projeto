@@ -18,8 +18,8 @@ import java.util.List;
 public record PedidoDTO(
         Long id,
         String codigo,
-        List<Long> produtosIds,
         Long clienteId,
+        List<Long> produtosIds,
         boolean ativo
 ) {
     public static PedidoDTO fromEntity(PedidoEntity entity){
@@ -30,5 +30,16 @@ public record PedidoDTO(
                 entity.getProdutos().stream().map(ProdutoEntity::getId).toList(),
                 entity.isAtivo()
         );
+    }
+
+    public static PedidoEntity toEntity(PedidoDTO dto, ClienteEntity cliente, List<ProdutoEntity> produtos){
+        PedidoEntity pedido = new PedidoEntity();
+        pedido.setId(dto.id);
+        pedido.setCodigo(dto.codigo);
+        pedido.setCliente(cliente);
+        pedido.setProdutos(produtos);
+        pedido.setAtivo(dto.ativo());
+
+        return pedido;
     }
 }
