@@ -75,15 +75,4 @@ public class PedidoController {
         }
     }
 
-    @PostMapping
-    public void adicionarProduto(@RequestBody ProdutoEntity produto){
-        PedidoEntity pedido = new PedidoEntity();
-        pedido.setAdicionaProduto(produto);
-    }
-
-    @DeleteMapping
-    public void removeProduto(@RequestBody ProdutoEntity produto){
-        PedidoEntity pedido = new PedidoEntity();
-        pedido.setRemoveProduto(produto);
-    }
 }

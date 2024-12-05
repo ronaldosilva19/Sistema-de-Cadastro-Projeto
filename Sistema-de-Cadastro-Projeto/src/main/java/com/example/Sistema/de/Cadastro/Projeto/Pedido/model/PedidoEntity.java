@@ -28,26 +28,18 @@ public class PedidoEntity {
     private Long id;
     private String codigo;
 
+    @ManyToOne
+    @JoinColumn(name = "cliente_id")
+    private ClienteEntity cliente;
+
     @ManyToMany
     @JoinTable(
             name = "pedido_produtos",
             joinColumns = @JoinColumn(name = "pedido_id"),
             inverseJoinColumns = @JoinColumn(name = "produto_id")
     )
-    private List<ProdutoEntity> produtos = new ArrayList<>();
+    private List<ProdutoEntity> produtos;
 
-    @ManyToOne
-    @JoinColumn(name = "cliente_id")
-    private ClienteEntity cliente;
     private boolean ativo = true; // Para exclusao logica.
 
-
-    // Para remover depois.
-    public void setAdicionaProduto(ProdutoEntity produto){
-        this.produtos.add(produto);
-    }
-
-    public void setRemoveProduto(ProdutoEntity produto){
-        this.produtos.remove(produto);
-    }
 }
