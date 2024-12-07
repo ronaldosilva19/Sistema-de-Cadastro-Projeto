@@ -20,7 +20,7 @@ public class PedidoService {
     private final ClienteRepository clienteRepository;
 
     public List<PedidoDTO> getAll(){
-        return pedidoRepository.findAll().stream().map(PedidoDTO::fromEntity).toList();
+        return pedidoRepository.findAll().stream().map(PedidoDTO::fromEntity).filter(PedidoDTO::ativo).toList();
     }
 
     public PedidoDTO getById(Long id){
@@ -60,6 +60,7 @@ public class PedidoService {
         }
 
         pedido.setCodigo(dto.codigo());
+        pedido.setAtivo(dto.ativo());
         return PedidoDTO.fromEntity(pedidoRepository.save(pedido));
     }
 
