@@ -1,0 +1,40 @@
+
+# POST - Cria um pedido.
+
+{
+  "codigo": "M122356",
+  "clienteId": 4,
+  "produtosIds": [15, 10, 5, 20, 8],
+  "ativo": true
+}
+
+# GET Lista Pedidos.
+
+http://localhost:8080/pedidos
+
+
+# GET - Busca por ID.
+http://localhost:8080/pedidos/1
+
+# PUT Adiciona Produto.
+http://localhost:8080/pedidos/2/adicionarProduto/4
+
+# PUT - Remove Produto da lista de Pedidos.
+http://localhost:8080/pedidos/2/removerProduto/6
+
+# DELETE - Remove Pedido.
+http://localhost:8080/pedidos/2
+
+# PACTH - Delete Logic Pedido.
+http://localhost:8080/pedidos/deleteLogic/3
+
+# PUT - Atualiza Pedido.
+http://localhost:8080/pedidos
+
+{
+	"id" : 3,
+  "codigo": "M122356",
+  "clienteId": 4,
+  "produtosIds": [15, 10, 5, 20, 8],
+  "ativo": true
+}
