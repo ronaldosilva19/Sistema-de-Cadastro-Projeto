@@ -1,6 +1,9 @@
 package com.example.Sistema.de.Cadastro.Projeto.Cliente.model;
 
+
 import jakarta.persistence.*;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -22,6 +25,8 @@ public class ClienteEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nome;
+    @NotNull(message = "O CPF nao pode ser nulo")
+    @Valid
     private String cpf;
 
     @Enumerated(EnumType.STRING)

@@ -2,6 +2,8 @@ package com.example.Sistema.de.Cadastro.Projeto.Cliente.DTO;
 
 import com.example.Sistema.de.Cadastro.Projeto.Cliente.model.ClienteEntity;
 import com.example.Sistema.de.Cadastro.Projeto.Cliente.model.GeneroCliente;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotNull;
 
 import java.time.LocalDate;
 
@@ -20,6 +22,8 @@ import java.time.LocalDate;
 public record ClienteDTO(
         Long id,
         String nome,
+        @NotNull(message = "O CPF nao pode ser nulo.")
+        @Valid
         String cpf,
         GeneroCliente genero,
         LocalDate dataNascimento,
