@@ -4,6 +4,7 @@ import com.example.Sistema.de.Cadastro.Projeto.Cliente.DTO.ClienteDTO;
 import com.example.Sistema.de.Cadastro.Projeto.Cliente.model.ClienteEntity;
 import com.example.Sistema.de.Cadastro.Projeto.Cliente.repository.ClienteRepository;
 import com.example.Sistema.de.Cadastro.Projeto.Cliente.service.ClienteService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -35,12 +36,12 @@ public class ClienteController {
     }
 
     @PostMapping
-    public ClienteDTO postCliente(@RequestBody @Validated ClienteDTO clienteDTO){
+    public ClienteDTO postCliente(@RequestBody @Valid ClienteDTO clienteDTO){
        return clienteService.criaCliente(clienteDTO);
     }
 
     @PutMapping
-    public ClienteDTO putCliente(@RequestBody @Validated ClienteDTO clienteDTO){
+    public ClienteDTO putCliente(@RequestBody ClienteDTO clienteDTO){
         return clienteService.atualizaCliente(clienteDTO);
     }
 

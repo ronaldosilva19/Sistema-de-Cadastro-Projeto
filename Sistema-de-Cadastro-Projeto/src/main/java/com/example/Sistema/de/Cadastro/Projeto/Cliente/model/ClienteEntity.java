@@ -25,8 +25,6 @@ public class ClienteEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nome;
-    @NotNull(message = "O CPF nao pode ser nulo")
-    @Valid
     private String cpf;
 
     @Enumerated(EnumType.STRING)

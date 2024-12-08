@@ -4,6 +4,7 @@ import com.example.Sistema.de.Cadastro.Projeto.Cliente.model.ClienteEntity;
 import com.example.Sistema.de.Cadastro.Projeto.Cliente.model.GeneroCliente;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
+import org.hibernate.validator.constraints.br.CPF;
 
 import java.time.LocalDate;
 
@@ -23,7 +24,7 @@ public record ClienteDTO(
         Long id,
         String nome,
         @NotNull(message = "O CPF nao pode ser nulo.")
-        @Valid
+        @CPF(message = "Informe um valor valido para o CPF")
         String cpf,
         GeneroCliente genero,
         LocalDate dataNascimento,
