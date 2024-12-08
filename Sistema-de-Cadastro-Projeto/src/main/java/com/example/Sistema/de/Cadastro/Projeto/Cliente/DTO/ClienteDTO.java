@@ -10,10 +10,12 @@ import java.time.LocalDate;
  * do request de forma temporária..
  * @author Jose Ronaldo
  *
+ * @param id Long - id do cliente.
  * @param nome String - nome do cliente.
  * @param cpf String - cpf do cliente.
  * @param genero GeneroCliente - genero do cliente.
  * @param dataNascimento LocalDate - data de nascimento do cliente.
+ * @param ativo boolean - flag de ativacao do cliente no sistema.
  */
 public record ClienteDTO(
         Long id,

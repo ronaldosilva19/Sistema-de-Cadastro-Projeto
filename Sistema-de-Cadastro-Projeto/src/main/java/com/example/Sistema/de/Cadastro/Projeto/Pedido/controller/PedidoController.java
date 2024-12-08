@@ -44,17 +44,17 @@ public class PedidoController {
 
     @PostMapping
     public PedidoDTO postPedido(@RequestBody @Validated PedidoDTO pedidoDTO){
-        return pedidoService.createPedido(pedidoDTO);
+        return pedidoService.criaPedido(pedidoDTO);
     }
 
     @PutMapping
     public PedidoDTO putPedido(@RequestBody @Validated PedidoDTO pedidoDTO){
-        return pedidoService.updatePedido(pedidoDTO);
+        return pedidoService.atualizaPedido(pedidoDTO);
     }
 
     @DeleteMapping("/{id}")
     public void deletePedido(@PathVariable Long id){
-       pedidoService.deletePedido(id);
+       pedidoService.deletaPedido(id);
     }
 
     @PatchMapping("/deleteLogic/{id}")
