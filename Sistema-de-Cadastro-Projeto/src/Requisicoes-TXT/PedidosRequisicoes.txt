@@ -13,22 +13,22 @@
 http://localhost:8080/pedidos
 
 
-# GET - Busca por ID.
+# GET - Busca pedido pelo ID informado.
 http://localhost:8080/pedidos/1
 
-# PUT Adiciona Produto.
+# PUT - Adiciona Produto ao pedido.
 http://localhost:8080/pedidos/2/adicionarProduto/4
 
-# PUT - Remove Produto da lista de Pedidos.
+# PUT - Remove um Produto da lista de Pedidos.
 http://localhost:8080/pedidos/2/removerProduto/6
 
-# DELETE - Remove Pedido.
+# DELETE - Remove Pedido do cliente, caso exista.
 http://localhost:8080/pedidos/2
 
-# PACTH - Delete Logic Pedido.
+# PACTH - Deleta de forma Logica o Pedido, ou seja, ele nao aparecera na listagem dos pedidos.
 http://localhost:8080/pedidos/deleteLogic/3
 
-# PUT - Atualiza Pedido.
+# PUT - Atualiza os dados do Pedido.
 http://localhost:8080/pedidos
 
 {

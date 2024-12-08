@@ -101,12 +101,12 @@ public class PedidoService {
     }
 
     /**
-     * Metodo que adiciona um pedido a lista de pedidos do cliente.
+     * Metodo que adiciona um produto a lista de pedidos do cliente.
      * @param pedidoId Long - id do pedido.
      * @param produtoId Long - ido do produto.
      */
 
-    public PedidoDTO adicionarPedido(Long pedidoId, Long produtoId){
+    public PedidoDTO adicionarProduto(Long pedidoId, Long produtoId){
         PedidoEntity pedido = pedidoRepository.findById(pedidoId).orElseThrow(()
         -> new RuntimeException("Pedido nao encontrado"));
 

@@ -63,8 +63,8 @@ public class PedidoController {
     }
 
     @PutMapping("/{pedidoId}/adicionarProduto/{produtoId}")
-    public PedidoDTO adicionarProduto(@PathVariable Long pedidoId, @PathVariable Long produtoId){
-        return pedidoService.adicionarPedido(pedidoId, produtoId);
+    public PedidoDTO adicionaProduto(@PathVariable Long pedidoId, @PathVariable Long produtoId){
+        return pedidoService.adicionarProduto(pedidoId, produtoId);
     }
 
     @PutMapping("/{pedidoId}/removerProduto/{produtoId}")

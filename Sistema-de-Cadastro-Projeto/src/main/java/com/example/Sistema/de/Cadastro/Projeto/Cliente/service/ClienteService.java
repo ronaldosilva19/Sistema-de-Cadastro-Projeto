@@ -1,12 +1,14 @@
 package com.example.Sistema.de.Cadastro.Projeto.Cliente.service;
 
 import com.example.Sistema.de.Cadastro.Projeto.Cliente.DTO.ClienteDTO;
+import com.example.Sistema.de.Cadastro.Projeto.Cliente.errors.VerificadorNaoEncontrado;
 import com.example.Sistema.de.Cadastro.Projeto.Cliente.model.ClienteEntity;
 import com.example.Sistema.de.Cadastro.Projeto.Cliente.repository.ClienteRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
