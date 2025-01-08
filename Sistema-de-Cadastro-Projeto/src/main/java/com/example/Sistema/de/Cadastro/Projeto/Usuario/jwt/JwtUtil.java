@@ -10,7 +10,7 @@ import java.util.List;
 
 @Component
 public class JwtUtil {
-    private final String SECRET = "chave_secreta";
+    private final String SECRET = "mySecretKey@12345$SuperSecureKey";
 
     public String gerarToken(String username, List<String> roles){
         return Jwts.builder()
